@@ -1,0 +1,27 @@
+Funkcje:
+1. Sprawdzenie czy projekt to Vue, Nuxt czy VSF. Vue bedzie mialo src/main.js lub .ts. Nuxt - nuxt.config.js, a VSF na razie niepotrzebne.
+
+Komendy:
+vue-wp init - odpala kreator konfiguracji modułu. Kolejno pytania:
+- Adres URL API
+- Podstawowy język (dwuznakowe określenie, np. pl)
+- Czy fetchować menu?
+  a) Tak, wszystkie
+  b) Tak, ale tylko konkretne
+    b2) Podajemy slugi po przecinku
+  c) Nie
+
+Na podstawie tego, tworzy kod zgodny z: https://docs.vuewordpress.io/guide/getting-started/installation/#vue-js
+
+I dopisuje go do main.js lub nuxt.config.js
+
+vue-wp pwa - Tworzy plik konfiguracyjny PWA na podstawie: https://docs.vuewordpress.io/guide/getting-started/pwa/#introduction
+
+Zapyta też o to po ilu sekundach skorzystać z offline danych. Chodzi o networkTimeoutSeconds, defaultowa wartosc to 5 sekund.
+
+vue-wp change url <wartość> - zmienia adres URL api w configu i PWA configu
+
+vue-wp extension init <wartość> - tworzy katalog o nazwie <wartość>, a w nim inicjuje plik extensiona o nazwie index.js. Jego zawartość to pierwszy kod z: https://docs.vuewordpress.io/guide/extending-the-module/essentials/#what-is-extension
+
+Będzie musiało też spytać, czy extension będzie pisany w TS czy JS.
+Póki co tyle rzeczy starczy. Napisz też testy!
