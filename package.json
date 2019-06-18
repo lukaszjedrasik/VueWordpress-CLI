@@ -11,7 +11,7 @@
   "license": "ISC",
   "preferGlobal": true,
   "bin": {
-    "vuewordpress-cli": "./bin/cli.js"
+    "@vue-wordpress/cli": "./bin/cli.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",
@@ -19,6 +19,7 @@
     "execa": "^1.0.0",
     "express": "^4.17.1",
     "inquirer": "^6.3.1",
-    "listr": "^0.14.3"
+    "listr": "^0.14.3",
+    "rxjs": "^6.5.2"
   }
 }

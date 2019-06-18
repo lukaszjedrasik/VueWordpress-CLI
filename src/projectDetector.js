@@ -1,5 +1,5 @@
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs");
 
 const vueProject = path.join(__dirname, "../../src/main.js");
 const nuxtProject = path.join(__dirname, "../../nuxt.config.js");
