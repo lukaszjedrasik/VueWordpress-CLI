@@ -1,13 +1,26 @@
 const path = require("path");
 const fs = require("fs");
 
-const vueProject = path.join(__dirname, "../../src/main.js");
+const vueProjectJS = path.join(__dirname, "../../src/main.js");
+const vueProjectTS = path.join(__dirname, "../../src/main.ts");
 const nuxtProject = path.join(__dirname, "../../nuxt.config.js");
 
-const vueDetector = () => {
+const vueDetectorJS = () => {
   let vue = "";
   try {
-    fs.accessSync(vueProject, fs.F_OK);
+    fs.accessSync(vueProjectJS, fs.F_OK);
+    vue = "Vue Detected";
+    return vue;
+  } catch (e) {
+    vue = false;
+    return vue;
+  }
+};
+
+const vueDetectorTS = () => {
+  let vue = "";
+  try {
+    fs.accessSync(vueProjectTS, fs.F_OK);
     vue = "Vue Detected";
     return vue;
   } catch (e) {
@@ -29,6 +42,7 @@ const nuxtDetector = () => {
 };
 
 module.exports = {
-  vueDetector,
+  vueDetectorJS,
+  vueDetectorTS,
   nuxtDetector
 };

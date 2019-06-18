@@ -1,5 +1,5 @@
 const program = require("commander");
-const vueWpInit = require("../survey/vueWpInit_Survey");
+const vueWpInit = require("../surveys/init");
 module.exports = () => {
   (() => {
     program
