@@ -27,40 +27,4 @@ const detector = () => {
   }
 };
 
-// const vueDetectorJS = () => {
-//   let vue = "";
-//   try {
-//     fs.accessSync(vueProjectJS, fs.F_OK);
-//     vue = "Vue Detected";
-//     return vue;
-//   } catch (e) {
-//     vue = false;
-//     return vue;
-//   }
-// };
-
-// const vueDetectorTS = () => {
-//   let vue = "";
-//   try {
-//     fs.accessSync(vueProjectTS, fs.F_OK);
-//     vue = "Vue Detected";
-//     return vue;
-//   } catch (e) {
-//     vue = false;
-//     return vue;
-//   }
-// };
-
-// const nuxtDetector = () => {
-//   let nuxt = "";
-//   try {
-//     fs.accessSync(nuxtProject, fs.F_OK);
-//     nuxt = "Nuxt Detected";
-//     return nuxt;
-//   } catch (e) {
-//     nuxt = false;
-//     return nuxt;
-//   }
-// };
-
 module.exports = detector;
