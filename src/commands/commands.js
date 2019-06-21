@@ -6,6 +6,9 @@ const writeFileInit = require("../io/init/init");
 const makeSurveyPWA = require("../surveys/pwa");
 const writeFilePWA = require("../io/pwa/pwa");
 
+const writeFileChange = require("../io/change/change");
+const commandSelect = require("../io/change/commandSelect");
+
 module.exports = () => {
   (() => {
     program
@@ -24,6 +27,17 @@ module.exports = () => {
       .action(async () => {
         let answers = await makeSurveyPWA();
         await writeFilePWA(answers);
+      });
+
+    program
+      .command("change <setting> <value>")
+      .alias("vwc")
+      .description(
+        "Change the current setting in a config file to the new value"
+      )
+      .action(async (setting, value) => {
+        const answers = await commandSelect(setting, value);
+        await writeFileChange(answers);
       });
 
     program.parse(process.argv);
