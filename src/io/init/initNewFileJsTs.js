@@ -4,6 +4,8 @@ module.exports = answers => {
     import store from 'store'
     import router from 'router'
     import Wordpress from '@vue-wordpress/core'
+    import './registerServiceWorker'
+
     Vue.use(Wordpress, {
       config: {
         url: '${answers.url}',

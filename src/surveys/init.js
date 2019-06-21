@@ -7,7 +7,7 @@ const questions = [
     name: "url",
     message: "URL address: (It should has http/https and dot)",
     validate: val => {
-      const expression = /^http: \/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gi;
+      const expression = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
       const pass = val.match(expression);
       if (pass) {
         return true;
