@@ -3,6 +3,7 @@ const path = require("path");
 const detector = require("../../projectDetector");
 const newFileJsTs = require("./initNewFileJsTs");
 const newFileNuxt = require("./initNewFileNuxt");
+const store = require("./newStore");
 
 module.exports = async answers => {
   const detectedPath = detector();
@@ -21,6 +22,13 @@ module.exports = async answers => {
     } else {
       const bodyNuxt = newFileNuxt(answers, file);
       fs.writeFileSync(detectedPath, bodyNuxt, "utf-8");
+
+      const newStore = store;
+      fs.writeFileSync(
+        path.join(__dirname, "../../../../store/index.js"),
+        newStore,
+        "utf-8"
+      );
     }
   } catch (e) {
     return false;

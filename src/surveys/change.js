@@ -33,6 +33,12 @@ const questions = [
         return "Enter slugs after comma";
       }
       return;
+    },
+    validate: answer => {
+      if (!answer) {
+        return "Menus cannot be empty";
+      }
+      return true;
     }
   },
   {

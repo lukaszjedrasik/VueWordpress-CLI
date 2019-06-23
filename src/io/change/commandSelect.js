@@ -5,20 +5,22 @@ module.exports = async (setting, value) => {
 
   switch (setting) {
     case "url":
-      const expression = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
-      const pass = value.match(expression);
-      if (pass) {
+      const expressionURL = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
+      const passURL = value.match(expressionURL);
+      if (passURL) {
         returnValue = { url: value };
         return returnValue;
       } else {
-        return "Wrong  URL value";
+        return false;
       }
     case "lang":
-      if (value.length === 2) {
+      const expressionLang = /^[a-zA-z]{2}$/g;
+      const passLang = value.match(expressionLang);
+      if (passLang) {
         returnValue = { lang: value };
         return returnValue;
       } else {
-        return "Wrong lang value";
+        return false;
       }
     case "menu":
       if (value === "FetchMode") {
@@ -26,11 +28,11 @@ module.exports = async (setting, value) => {
         returnValue = answer;
         return returnValue;
       } else {
-        return "Value must be FetchMode";
+        return false;
       }
 
     default: {
-      err = "Unknow commands";
+      err = "Unknown commands";
       return err;
     }
   }

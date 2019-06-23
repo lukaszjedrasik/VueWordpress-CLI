@@ -20,7 +20,8 @@ const questions = [
     name: "lang",
     message: "Base language: (It has to be 2 chars long)",
     validate: val => {
-      if (val.length === 2) {
+      const expression = /^[a-zA-z]{2}$/g;
+      if (val.match(expression)) {
         return true;
       }
       return "wrong";
@@ -46,6 +47,12 @@ const questions = [
         return "enter slugs after comma";
       }
       return;
+    },
+    validate: answer => {
+      if (!answer) {
+        return "Menus cannot be empty";
+      }
+      return true;
     }
   },
   {

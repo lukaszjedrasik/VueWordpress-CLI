@@ -1,15 +1,16 @@
 module.exports = answers => {
   const bodyJsTs = `
     import Vue from 'vue'
-    import store from 'store'
-    import router from 'router'
-    import Wordpress from '@vue-wordpress/core'
+    import App from "./App.vue";
+    import store from './store'
+    import router from './router'
     import './registerServiceWorker'
+    import Wordpress from '@vue-wordpress/core'
 
     Vue.use(Wordpress, {
       config: {
         url: '${answers.url}',
-        lang: '${answers.lang}',
+        lang: '${answers.lang.toLowerCase()}',
         ${
           answers.menus === "disable"
             ? "menus: false"
@@ -20,7 +21,15 @@ module.exports = answers => {
       },
       store,
       router
-    })`;
+    })
+    
+    Vue.config.productionTip = false;
+
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount("#app");`;
 
   return bodyJsTs;
 };
