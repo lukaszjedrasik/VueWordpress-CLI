@@ -1,4 +1,5 @@
-const changeCertainMenu = require("./changeCertainMenus");
+const changeCertainMenus = require("./changeCertainMenus");
+const changeEachMenus = require("./changeEachMenus");
 
 module.exports = (mainFile, data) => {
   const newData = () => {
@@ -9,21 +10,28 @@ module.exports = (mainFile, data) => {
       newFile = mainFile.replace(expression, `url: '${data.url}',`);
       return newFile;
     } else if (data.lang) {
-      expression = /(lang:)\s('|")[a-zA-z]{2}('|")/gi;
+      expression = /(lang:)\s('|")[a-zA-z]{2}('|")/g;
       newFile = mainFile.replace(expression, `lang: '${data.lang}'`);
       return newFile;
     } else if (data.menuFetchMode) {
       if (data.menuFetchMode === "each") {
-        expression = /(menus:)\s.+/g;
-        newFile = mainFile.replace(expression, "");
-        return newFile;
+        const changeEach = changeEachMenus(mainFile);
+        newFile = changeEach;
       } else if (data.menuFetchMode === "certain") {
-        const changeCertain = changeCertainMenu(mainFile, data);
+        const changeCertain = changeCertainMenus(mainFile, data);
         newFile = changeCertain;
-        return newFile;
       } else if (data.menuFetchMode === "none") {
-        // to do
-        return "is none";
+        const menusExpression = /(menus:)\s.+/g;
+        const pass = mainFile.match(menusExpression);
+        if (pass) {
+          newFile = mainFile.replace(menusExpression, `menus: false,`);
+        } else {
+          const langExpression = /(lang:)\s.+/g;
+          const lang = mainFile.match(langExpression);
+          const content = `${lang} 
+    menus: false,`;
+          newFile = mainFile.replace(lang, content);
+        }
       }
       return newFile;
     }

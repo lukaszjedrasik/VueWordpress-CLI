@@ -37,7 +37,6 @@ module.exports = () => {
       )
       .action(async (setting, value) => {
         const answers = await commandSelect(setting, value);
-        console.log(answers);
         await writeFileChange(answers);
       });
 
