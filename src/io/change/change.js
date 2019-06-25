@@ -24,7 +24,12 @@ module.exports = async answers => {
         fs.writeFileSync(detectedPath, newContent, "utf-8");
       }
     } else {
-      console.log("nuxt");
+      const oldNuxtConfigFile = fs.readFileSync(detectedPath, "utf-8");
+      const newContent = newMain(oldNuxtConfigFile, data);
+
+      if (newContent) {
+        fs.writeFileSync(detectedPath, newContent, "utf-8");
+      }
     }
   } catch (e) {
     console.log(e);

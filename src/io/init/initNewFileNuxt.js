@@ -1,3 +1,5 @@
+const expression = /(build:)\s.+/g;
+
 module.exports = (answers, file) => {
   const bodyNuxt = () => {
     const addModule = file.replace(
@@ -6,10 +8,17 @@ module.exports = (answers, file) => {
     [
       '@vue-wordpress/nuxt',
       {
-        config: {
-          url: '${answers.url}',
-          lang: '${answers.lang.toLowerCase()}'
-        },
+        url: '${answers.url}',
+        lang: '${answers.lang.toLowerCase()}',
+        ${
+          answers.menus === "disable"
+            ? `menus: false,`
+            : "" || answers.menus === "default"
+            ? ""
+            : answers.menus.length === 1
+            ? `menus: '${answers.menus}',`
+            : `menus: [${answers.menus.map(v => `"${v}"`)}],`
+        }
         store: true,
         router: true
       }
@@ -17,19 +26,9 @@ module.exports = (answers, file) => {
     `
     );
     const content = addModule.replace(
+      expression,
       `  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
-  }`,
-      `  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {},
-    transpile: ['@vue-wordpress/core']
-  }`
+    transpile: ['@vue-wordpress/core'],`
     );
     return content;
   };

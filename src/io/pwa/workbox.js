@@ -2,7 +2,8 @@ module.exports = (answers, nuxtConfigFile) => {
   const workbox = nuxtConfigFile.replace(
     `loading: { color: "#fff" },`,
     `loading: { color: "#fff" },
-    workbox: {
+
+  workbox: {
     runtimeCaching: [
       {
         urlPattern: new RegExp('^https://wp\.myapi\.com/'),
